@@ -1,150 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rishu Kumar | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
-    <meta name="description" content="Rishu Kumar - Modern developer portfolio. Python, FastAPI, TailwindCSS, HTMX, AI automation." />
-  </head>
-  <body class="min-h-screen bg-slate-50 text-slate-800">
-    <div class="relative isolate">
-      <div class="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-indigo-300 to-purple-300 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rishu Kumar | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <meta name="description" content="Rishu Kumar - Modern developer portfolio. Python, FastAPI, TailwindCSS, HTMX, AI automation." />
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <script>
+    // Dark mode toggle logic
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+
+    function toggleDarkMode() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark')
+        localStorage.theme = 'light'
+      } else {
+        document.documentElement.classList.add('dark')
+        localStorage.theme = 'dark'
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FFF9EB;
+    }
+    .dark body {
+      background-color: #1e293b;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 dark:text-slate-100 transition-colors">
+  <div class="relative isolate">
+    <div class="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+      <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-indigo-300 to-purple-300 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
     </div>
+  </div>
+  
+  <!-- Dark/Light Mode Toggle -->
+  <div class="fixed top-4 right-4 z-50">
+    <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all">
+      <svg class="w-6 h-6 text-slate-800 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+      </svg>
+      <svg class="w-6 h-6 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+      </svg>
+    </button>
+  </div>
 
-    <main class="max-w-6xl mx-auto px-4 py-10 sm:py-14">
-      <!-- Header / Hero -->
-      <section class="bg-white/90 backdrop-blur border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
-        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-          <img src="19933130-medium_jpg.jpg" alt="Rishu Kumar headshot" class="h-28 w-28 sm:h-36 sm:w-36 rounded-full ring-4 ring-indigo-100 object-cover shadow" />
-          <div class="flex-1">
-            <div class="flex items-center gap-3 flex-wrap">
-              <h1 class="text-3xl sm:text-4xl font-bold text-slate-900">Rishu Kumar</h1>
-              <span class="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-3 py-1 text-sm font-medium text-indigo-700 ring-1 ring-inset ring-indigo-200">Open to opportunities</span>
-            </div>
-            <p class="mt-2 text-slate-600 max-w-3xl">Frontend-focused developer exploring Python deep dive, FastAPI, TailwindCSS, HTMX, and AI/automation projects. I enjoy building clean, performant, and delightful user experiences.</p>
-            <div class="mt-4 flex flex-wrap items-center gap-3">
-              <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium hover:bg-slate-50" href="mailto:rishukumark19@gmail.com">Email</a>
-              <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium hover:bg-slate-50" href="https://www.linkedin.com/in/rishukumark19" target="_blank" rel="noopener">LinkedIn</a>
-              <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium hover:bg-slate-50" href="https://github.com/rishukumark19" target="_blank" rel="noopener">GitHub</a>
-            </div>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-700">Python (deep dive)</span>
-              <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-700">FastAPI</span>
-              <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-700">TailwindCSS</span>
-              <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-700">HTMX</span>
-              <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-700">AI & Automation</span>
+  <main class="max-w-6xl mx-auto px-4 py-10 sm:py-14">
+    <!-- Header / Hero -->
+    <section class="bg-white/90 dark:bg-slate-800/90 backdrop-blur border border-slate-200 dark:border-slate-700 rounded-2xl p-6 sm:p-8 shadow-sm">
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+        <img src="19933130-medium_jpg.jpg" alt="Rishu Kumar headshot" class="h-28 w-28 sm:h-36 sm:w-36 rounded-full ring-4 ring-indigo-100 dark:ring-indigo-900 object-cover shadow" />
+        <div class="flex-1">
+          <div class="flex items-center gap-3 flex-wrap">
+            <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100">Rishu Kumar</h1>
+            <span class="inline-flex items-center gap-1 rounded-full bg-indigo-50 dark:bg-indigo-900 px-3 py-1 text-sm font-medium text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-700">Open to opportunities</span>
+          </div>
+          <p class="mt-2 text-slate-600 dark:text-slate-300 max-w-3xl">Frontend-focused developer exploring Python deep dive, FastAPI, TailwindCSS, HTMX, and AI/automation projects. I enjoy building clean, performant, and delightful user experiences.</p>
+          <div class="mt-4 flex flex-wrap items-center gap-3">
+            <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700" href="mailto:rishukumark19@gmail.com">Email</a>
+            <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700" href="https://www.linkedin.com/in/rishukumark19" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700" href="https://github.com/rishukumark19" target="_blank" rel="noopener">GitHub</a>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Python (deep dive)</span>
+            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">FastAPI</span>
+            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">TailwindCSS</span>
+            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">HTMX</span>
+            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">AI & Automation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary + Skills -->
+    <section class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 space-y-6">
+        <!-- Profile Summary -->
+        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100">Profile Summary</h2>
+          <p class="mt-2 text-slate-700 dark:text-slate-300">Results-driven professional with experience across web development and creative editing. Adept at crafting responsive interfaces, optimizing performance, and collaborating end-to-end from concept to delivery. Currently deep-diving into Python and building APIs with FastAPI while enhancing UX with TailwindCSS and HTMX interactions.</p>
+        </div>
+
+        <!-- Experience -->
+        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100">Experience</h2>
+          <div class="mt-4 space-y-4">
+            <div>
+              <h3 class="text-lg font-medium text-slate-900 dark:text-slate-100">Frontend Developer</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm">Building modern web applications with focus on user experience</p>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- Summary + Skills -->
-      <section class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div class="lg:col-span-2 space-y-6">
-          <!-- Profile Summary -->
-          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-            <h2 class="text-xl font-semibold text-slate-900">Profile Summary</h2>
-            <p class="mt-2 text-slate-700">Results-driven professional with experience across web development and creative editing. Adept at crafting responsive interfaces, optimizing performance, and collaborating end-to-end from concept to delivery. Currently deep-diving into Python and building APIs with FastAPI while enhancing UX with TailwindCSS and HTMX interactions.</p>
-          </div>
-
-          <!-- Experience -->
-          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-            <h2 class="text-xl font-semibold text-slate-900">Experience</h2>
-            <div class="mt-4 grid gap-4">
-              <article class="rounded-xl border border-slate-200 p-4 hover:shadow-sm transition">
-                <div class="flex items-center justify-between">
-                  <h3 class="font-medium text-slate-900">Frontend Developer / Editor</h3>
-                  <span class="text-xs text-slate-500">Dates from Resume</span>
-                </div>
-                <ul class="mt-2 list-disc pl-5 text-slate-700 space-y-1">
-                  <li>Built responsive UIs with semantic HTML and TailwindCSS.</li>
-                  <li>Integrated progressive enhancement and dynamic sections via HTMX.</li>
-                  <li>Collaborated on content, assets, and video deliverables end-to-end.</li>
-                </ul>
-              </article>
-              <!-- Add other roles from resumes as needed -->
-            </div>
-          </div>
-
-          <!-- Achievements -->
-          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-            <h2 class="text-xl font-semibold text-slate-900">Achievements</h2>
-            <ul class="mt-2 list-disc pl-5 text-slate-700 space-y-1">
-              <li>Delivered multiple pixel-perfect, accessible pages with strong Lighthouse scores.</li>
-              <li>Automated repetitive editing tasks using scripts and templates.</li>
-              <li>Recognized for detail orientation and cross-functional collaboration.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Skills Card -->
-        <aside class="space-y-6">
-          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-            <h2 class="text-xl font-semibold text-slate-900">Skills</h2>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-200">HTML</span>
-              <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-200">CSS</span>
-              <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-200">TailwindCSS</span>
-              <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-200">HTMX</span>
-              <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-200">JavaScript</span>
-              <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-200">Python</span>
-              <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-200">FastAPI</span>
-              <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-200">Git & GitHub</span>
-              <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-200">Video Editing</span>
-            </div>
-          </div>
-
-          <!-- Education -->
-          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-            <h2 class="text-xl font-semibold text-slate-900">Education</h2>
-            <ul class="mt-2 list-disc pl-5 text-slate-700 space-y-1">
-              <li>Degree and institution details from resumes.</li>
-            </ul>
-          </div>
-        </aside>
-      </section>
-
-      <!-- Video Editing Portfolio -->
-      <section class="mt-8 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-        <div class="flex items-center justify-between gap-4">
-          <h2 class="text-xl font-semibold text-slate-900">Video Editing Portfolio</h2>
-          <div class="text-xs text-slate-500">HTMX-loaded gallery</div>
-        </div>
-        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="portfolio" hx-get="/portfolio.json" hx-trigger="load" hx-swap="innerHTML">
-          <div class="col-span-full text-slate-500 text-sm">Loading portfolio...</div>
-        </div>
-      </section>
-
-      <!-- Contact -->
-      <section class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div class="lg:col-span-2 bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 rounded-2xl p-6">
-          <h2 class="text-xl font-semibold text-slate-900">Let’s connect</h2>
-          <p class="mt-2 text-slate-700">Have a project or role in mind? Reach out—email preferred.</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium hover:bg-slate-50" href="mailto:rishukumark19@gmail.com">rishukumark19@gmail.com</a>
-            <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium hover:bg-slate-50" href="https://www.linkedin.com/in/rishukumark19" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium hover:bg-slate-50" href="https://github.com/rishukumark19" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-          <h3 class="text-sm font-semibold text-slate-900">Quick facts</h3>
-          <ul class="mt-2 text-sm text-slate-700 space-y-1">
-            <li>Timezone: IST (UTC+5:30)</li>
-            <li>Currently: Learning Python, building FastAPI services</li>
-            <li>Frontend stack: TailwindCSS, HTMX</li>
+        <!-- Projects -->
+        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100">Projects</h2>
+          <ul class="mt-2 list-disc pl-5 text-slate-700 dark:text-slate-300 space-y-1">
+            <li>Portfolio website with TailwindCSS and HTMX</li>
+            <li>FastAPI backend development projects</li>
+            <li>Python automation scripts and tools</li>
           </ul>
         </div>
-      </section>
+      </div>
 
-      <footer class="py-10 text-center text-sm text-slate-500">© <span id="year"></span> Rishu Kumar — Built with TailwindCSS + HTMX</footer>
-    </main>
+      <div class="space-y-6">
+        <!-- Skills -->
+        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100">Skills</h2>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-700">HTML & CSS</span>
+            <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-700">JavaScript</span>
+            <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-700">TailwindCSS</span>
+            <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-700">Python</span>
+            <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-700">FastAPI</span>
+            <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-700">Git & GitHub</span>
+            <span class="badge px-2.5 py-1 rounded-full text-xs bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-700">Video Editing</span>
+          </div>
+        </div>
 
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-  </body>
-</html>
+        <!-- Education -->
+        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100">Education</h2>
+          <ul class="mt-2 list-disc pl-5 text-slate-700 dark:text-slate-300 space-y-1">
+            <li>Degree and institution details from resumes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>l
