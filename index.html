@@ -4,14 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Rishu Kumar — Portfolio</title>
-
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- HTMX CDN -->
   <script src="https://unpkg.com/htmx.org@1.9.12"></script>
-
   <meta name="description" content="Rishu Kumar — Frontend-focused developer. Python, FastAPI, TailwindCSS, HTMX, AI & automation. Video editing (side work)." />
-
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -43,7 +40,6 @@
       }
     }
   </script>
-
   <style>
     /* subtle body background for light/dark */
     body { background-color: #FFF9EB; }
@@ -59,237 +55,82 @@
     </button>
   </div>
 
-  <main class="max-w-5xl mx-auto px-4 py-12">
-    <!-- Hero -->
-    <header class="bg-white/90 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 sm:p-8 shadow-sm">
-      <div class="flex flex-col sm:flex-row items-center gap-6">
-        <img src="19933130-medium_jpg.jpg" alt="Rishu Kumar" class="h-28 w-28 sm:h-36 sm:w-36 rounded-full ring-4 ring-indigo-100 dark:ring-indigo-900 object-cover shadow" />
+  <div class="mx-auto max-w-3xl px-4 py-12">
+    <!-- About me / Hero -->
+    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm mb-6">
+      <div class="flex flex-col sm:flex-row items-start gap-6">
+        <img src="rishu_kumar_img.jpg" alt="Profile" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-100 dark:border-indigo-900" />
         <div class="flex-1">
-          <div class="flex items-center gap-3 flex-wrap">
-            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">Rishu Kumar</h1>
-            <span class="inline-flex items-center gap-1 rounded-full bg-indigo-50 dark:bg-indigo-900 px-3 py-1 text-sm font-medium text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-700">Open to opportunities</span>
-          </div>
-          <p class="mt-2 text-slate-700 dark:text-slate-300 max-w-3xl">
-            Frontend-focused developer exploring Python (deep dive) and building APIs with <strong>FastAPI</strong>. I craft clean, performant user experiences using <strong>TailwindCSS</strong> and <strong>HTMX</strong>, and build automation/AI tools on the side.
+          <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Rishu Kumar</h1>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Frontend-focused Developer | Python | TailwindCSS | HTMX | AI & Automation</p>
+          <p class="mt-3 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            I build modern, responsive web interfaces with Python backends (FastAPI/Django), TailwindCSS, and HTMX. I also enjoy creative side work — video editing, motion graphics, and content creation.
           </p>
-
-          <div class="mt-4 flex flex-wrap gap-2">
-            <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700" href="mailto:rishukumar.work@gmail.com">Email</a>
-            <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700" href="https://www.linkedin.com/in/rishukumar-work" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700" href="https://github.com/rishukumark19" target="_blank" rel="noopener">GitHub</a>
-
-            <!-- Resume download: ensure Rishu_Kumar_Resume.pdf is in the repo root -->
-            <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm font-semibold hover:shadow-sm ml-1" href="Rishu_Kumar_Resume.pdf" download>Download Resume</a>
-          </div>
-
-          <div class="mt-4 flex flex-wrap gap-2">
-            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Python</span>
-            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">FastAPI</span>
-            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">TailwindCSS</span>
-            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">HTMX</span>
-            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Git</span>
-            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">AI & Automation</span>
-          </div>
         </div>
       </div>
-    </header>
+    </div>
 
-    <!-- Main grid -->
-    <section class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- Left column: summary, experience, projects -->
-      <div class="lg:col-span-2 space-y-6">
-        <!-- Profile Summary -->
-        <article class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
-          <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Profile Summary</h2>
-          <p class="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-            Results-driven web developer with hands-on experience building web apps with Django and an ongoing deep dive into Python and FastAPI for backend APIs. I focus on creating responsive, accessible frontends with TailwindCSS and enhancing UX using HTMX-driven interactions. I also use AI tools for automation and developer productivity.
-          </p>
-          <div class="mt-4 text-sm text-slate-600 dark:text-slate-400">
-            <strong>Areas I’m exploring:</strong> FastAPI, HTMX progressive enhancement, Tailwind-based design systems, backend performance, and AI-powered automation.
-          </div>
-        </article>
-
-        <!-- Experience -->
-        <article class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
-          <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Experience</h2>
-
-          <div class="mt-4 space-y-4">
-            <div>
-              <h3 class="text-md font-medium text-slate-900 dark:text-slate-100">Frontend Developer (Freelance / Personal)</h3>
-              <p class="text-sm text-slate-600 dark:text-slate-400">Building responsive frontends, integrating HTMX for progressive interactions, and creating maintainable Tailwind component patterns.</p>
-            </div>
-
-            <div>
-              <h3 class="text-md font-medium text-slate-900 dark:text-slate-100">Web Developer — Django & Backend Projects</h3>
-              <p class="text-sm text-slate-600 dark:text-slate-400">Developed and deployed Django apps using MVT, worked with Django ORM and relational models, and managed deployments on Google Cloud. (College projects & freelancing)</p>
-            </div>
-
-            <div>
-              <h3 class="text-md font-medium text-slate-900 dark:text-slate-100">Leadership & Outreach</h3>
-              <p class="text-sm text-slate-600 dark:text-slate-400">President, SAE NITK — led projects and workshops; Publicity Head, NSS NITK — managed digital campaigns and boosted volunteer engagement.</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- Projects: clickable cards using HTMX to expand details -->
-        <article class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
-          <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Projects</h2>
-
-          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Click a card to view a short description.</p>
-
-          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- Project card: Portfolio -->
-            <button hx-get="#proj-portfolio" hx-target="#project-detail" hx-swap="innerHTML" class="text-left group p-4 rounded-xl border border-transparent hover:border-indigo-200 dark:hover:border-indigo-800 bg-slate-50 dark:bg-slate-900 transition-shadow shadow-sm hover:shadow-md">
-              <div class="flex items-start gap-3">
-                <div class="flex-none w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center font-semibold text-indigo-700 dark:text-indigo-200">P</div>
-                <div>
-                  <div class="font-medium text-slate-900 dark:text-slate-100">Personal Portfolio</div>
-                  <div class="text-sm text-slate-600 dark:text-slate-400">TailwindCSS + HTMX frontend for GitHub Pages</div>
-                </div>
-              </div>
-            </button>
-
-            <!-- Project card: FastAPI API -->
-            <button hx-get="#proj-fastapi" hx-target="#project-detail" hx-swap="innerHTML" class="text-left group p-4 rounded-xl border border-transparent hover:border-indigo-200 dark:hover:border-indigo-800 bg-slate-50 dark:bg-slate-900 transition-shadow shadow-sm hover:shadow-md">
-              <div class="flex items-start gap-3">
-                <div class="flex-none w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center font-semibold text-indigo-700 dark:text-indigo-200">A</div>
-                <div>
-                  <div class="font-medium text-slate-900 dark:text-slate-100">FastAPI Backend</div>
-                  <div class="text-sm text-slate-600 dark:text-slate-400">APIs for small automation tools and data processing</div>
-                </div>
-              </div>
-            </button>
-
-            <!-- Project card: Python automation -->
-            <button hx-get="#proj-auto" hx-target="#project-detail" hx-swap="innerHTML" class="text-left group p-4 rounded-xl border border-transparent hover:border-indigo-200 dark:hover:border-indigo-800 bg-slate-50 dark:bg-slate-900 transition-shadow shadow-sm hover:shadow-md">
-              <div class="flex items-start gap-3">
-                <div class="flex-none w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center font-semibold text-indigo-700 dark:text-indigo-200">S</div>
-                <div>
-                  <div class="font-medium text-slate-900 dark:text-slate-100">Python Automation</div>
-                  <div class="text-sm text-slate-600 dark:text-slate-400">Scripts for build tasks, automation, and small AI workflows</div>
-                </div>
-              </div>
-            </button>
-
-            <!-- Project card: Video micro project (side but clickable) -->
-            <button hx-get="#proj-video" hx-target="#project-detail" hx-swap="innerHTML" class="text-left group p-4 rounded-xl border border-transparent hover:border-indigo-200 dark:hover:border-indigo-800 bg-slate-50 dark:bg-slate-900 transition-shadow shadow-sm hover:shadow-md">
-              <div class="flex items-start gap-3">
-                <div class="flex-none w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center font-semibold text-indigo-700 dark:text-indigo-200">V</div>
-                <div>
-                  <div class="font-medium text-slate-900 dark:text-slate-100">Video Edits (Side)</div>
-                  <div class="text-sm text-slate-600 dark:text-slate-400">Short gaming edits, color grading, transitions (DaVinci / Premiere)</div>
-                </div>
-              </div>
-            </button>
-          </div>
-
-          <!-- Project detail placeholder -->
-          <div id="project-detail" class="mt-5 p-4 border border-dashed rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60">
-            <p class="text-sm text-slate-600 dark:text-slate-400">Select a project to view details — no page reload (HTMX-driven).</p>
-          </div>
-
-          <!-- hidden fragments for HTMX to fetch from same page -->
-          <div style="display:none">
-            <div id="proj-portfolio">
-              <h3 class="text-md font-semibold text-slate-900 dark:text-slate-100">Personal Portfolio</h3>
-              <p class="mt-2 text-sm text-slate-700 dark:text-slate-300">A responsive portfolio built with TailwindCSS and progressive enhancement using HTMX. Designed for performance and clarity — deployed on GitHub Pages. Features dark/light mode, project cards, and downloadable resume.</p>
-              <p class="mt-3 text-sm text-slate-600 dark:text-slate-400"><strong>Stack:</strong> HTML, TailwindCSS, HTMX.</p>
-              <div class="mt-3"><a class="text-sm font-medium text-indigo-600 dark:text-indigo-300" href="https://github.com/rishukumark19" target="_blank" rel="noopener">View code on GitHub</a></div>
-            </div>
-
-            <div id="proj-fastapi">
-              <h3 class="text-md font-semibold text-slate-900 dark:text-slate-100">FastAPI Backend</h3>
-              <p class="mt-2 text-sm text-slate-700 dark:text-slate-300">Small REST & async endpoints built with FastAPI for data ingestion and basic automation. I focus on clear routing, Pydantic models for validation, and lightweight deployment (Gunicorn/Uvicorn or cloud run).</p>
-              <p class="mt-3 text-sm text-slate-600 dark:text-slate-400"><strong>Stack:</strong> Python, FastAPI, Pydantic, SQLite/Postgres.</p>
-            </div>
-
-            <div id="proj-auto">
-              <h3 class="text-md font-semibold text-slate-900 dark:text-slate-100">Python Automation</h3>
-              <p class="mt-2 text-sm text-slate-700 dark:text-slate-300">Automation scripts for repetitive tasks, data parsing, and small ETL-style jobs. Also experiment with AI utilities for prompt engineering and workflow automation.</p>
-              <p class="mt-3 text-sm text-slate-600 dark:text-slate-400"><strong>Tools:</strong> Python, Pandas (light), built-in schedulers, OpenAI APIs (for some automation prototypes).</p>
-            </div>
-
-            <div id="proj-video">
-              <h3 class="text-md font-semibold text-slate-900 dark:text-slate-100">Video Editing — Side Work</h3>
-              <p class="mt-2 text-sm text-slate-700 dark:text-slate-300">Short gaming edits, memes, and promotional content. Tools: DaVinci Resolve, Adobe Premiere Pro, After Effects. Available for small freelance gigs — contact via email or socials.</p>
-              <p class="mt-3 text-sm text-slate-600 dark:text-slate-400"><strong>Examples:</strong> Valorant montages, meme edits, 3D text, color grading.</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- Certifications & Achievements -->
-        <article class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
-          <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Certifications & Achievements</h2>
-          <ul class="mt-3 list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-            <li>Responsive Web Design Certification — freeCodeCamp (web fundamentals and responsive layouts)</li>
-            <li>JEE Mains Rank: 7800 (Top 0.6%) — strong analytical foundation</li>
-            <li>Best Publicity Campaign Award — NSS NITK (led social strategy and execution)</li>
-          </ul>
-        </article>
+    <!-- Grid of Skills -->
+    <div class="grid sm:grid-cols-2 gap-6 mb-6">
+      <!-- Work 1 -->
+      <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+        <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Primary Work — Development</h2>
+        <p class="mt-2 text-sm text-slate-700 dark:text-slate-300">Building elegant frontends &amp; backends.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">Python</span>
+          <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">FastAPI</span>
+          <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">Django</span>
+          <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">HTMX</span>
+        </div>
+        <div class="mt-3 flex flex-col gap-2">
+          <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">TailwindCSS</span>
+          <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">HTML &amp; CSS</span>
+          <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">Git &amp; GitHub</span>
+          <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">Video Editing</span>
+        </div>
       </div>
 
-      <!-- Right column: skills, education, contact -->
-      <aside class="space-y-6">
-        <!-- Skills -->
-        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Skills</h3>
-          <div class="mt-4 grid grid-cols-2 gap-2 text-sm">
-            <div class="flex flex-col gap-2">
-              <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">Python</span>
-              <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">FastAPI</span>
-              <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">Django</span>
-              <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">HTMX</span>
-            </div>
-            <div class="flex flex-col gap-2">
-              <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">TailwindCSS</span>
-              <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">HTML & CSS</span>
-              <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">Git & GitHub</span>
-              <span class="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">Video Editing</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Education -->
-        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Education</h3>
-          <ul class="mt-3 text-sm text-slate-700 dark:text-slate-300 space-y-2">
-            <li><strong>NITK Surathkal</strong> — B.Tech, Electronics & Communication Engineering (2021–2025)</li>
-            <li><strong>GGCET St. Xavier’s</strong> — Class XII: 95% (2019–2021)</li>
-          </ul>
-        </div>
-
-        <!-- Contact / CTA -->
-        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Contact</h3>
-          <p class="mt-2 text-sm text-slate-700 dark:text-slate-300">Email: <a class="text-indigo-600 dark:text-indigo-300 font-medium" href="mailto:rishukumar.work@gmail.com">rishukumar.work@gmail.com</a></p>
-          <p class="mt-1 text-sm text-slate-700 dark:text-slate-300">Phone: <span class="font-medium">+91-7250215969</span></p>
-
-          <div class="mt-4 flex gap-2">
-            <a class="flex-1 inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 bg-indigo-600 text-white font-medium hover:bg-indigo-700" href="mailto:rishukumar.work@gmail.com">Get in touch</a>
-            <a class="inline-flex items-center gap-2 rounded-md px-3 py-2 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700" href="https://rishukumar.carrd.co" target="_blank" rel="noopener">Portfolio (Carrd)</a>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <!-- Side Work / Creative Projects (compact) -->
-    <section class="mt-8">
+      <!-- Work 2 -->
       <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
         <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Side Work — Creative / Video Editing</h2>
-        <p class="mt-2 text-sm text-slate-700 dark:text-slate-300">I do short-form video edits (gaming montages and memes), color grading, and motion graphics using Premiere Pro, After Effects, and DaVinci Resolve. These are side projects — available for small freelance gigs.</p>
-        <div class="mt-3 text-sm text-slate-600 dark:text-slate-400">Socials: <a class="text-indigo-600 dark:text-indigo-300" href="https://x.com/rishukumark19" target="_blank" rel="noopener">@rishukumark19</a> · <a class="text-indigo-600 dark:text-indigo-300" href="https://www.instagram.com/cleanslatevibe/" target="_blank" rel="noopener">@cleanslatevibe</a></div>
+        <p class="mt-2 text-sm text-slate-700 dark:text-slate-300">Crafting compelling visuals &amp; stories.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded-md bg-pink-50 dark:bg-pink-900 text-pink-700 dark:text-pink-200">Adobe Premiere Pro</span>
+          <span class="px-2 py-1 rounded-md bg-pink-50 dark:bg-pink-900 text-pink-700 dark:text-pink-200">DaVinci Resolve</span>
+          <span class="px-2 py-1 rounded-md bg-pink-50 dark:bg-pink-900 text-pink-700 dark:text-pink-200">After Effects</span>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer class="mt-10 text-center text-sm text-slate-600 dark:text-slate-400">
-      <div>© <span id="year"></span> Rishu Kumar — Built with TailwindCSS & HTMX • <a class="text-indigo-600 dark:text-indigo-300" href="https://github.com/rishukumark19" target="_blank" rel="noopener">GitHub</a></div>
-    </footer>
-  </main>
+    <!-- Projects -->
+    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm mb-6">
+      <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Projects &amp; Experience</h3>
+      <ul class="mt-3 text-sm text-slate-700 dark:text-slate-300 space-y-2">
+        <li><strong>Personal Portfolio</strong> — Built with TailwindCSS + HTMX for a minimal yet interactive design.</li>
+        <li><strong>FastAPI Backends</strong> — RESTful services for quick frontend prototyping &amp; AI integrations.</li>
+        <li><strong>Video Editing</strong> — Handled editing &amp; motion graphics for YouTube creators &amp; small businesses.</li>
+      </ul>
+    </div>
 
-  <script>
-    // Insert current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <!-- Education -->
+    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm mb-6">
+      <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Education</h3>
+      <ul class="mt-3 text-sm text-slate-700 dark:text-slate-300 space-y-2">
+        <li><strong>NITK Surathkal</strong> — B.Tech, Electronics &amp; Communication Engineering (2021–2025)</li>
+        <li><strong>GGCET St. Xavier's</strong> — Class XII: 95% (2019–2021)</li>
+      </ul>
+    </div>
+
+    <!-- Contact / CTA -->
+    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+      <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Contact</h3>
+      <p class="mt-2 text-sm text-slate-700 dark:text-slate-300">Email: <a class="text-indigo-600 dark:text-indigo-300 font-medium" href="mailto:rishukumar.work@gmail.com">rishukumar.work@gmail.com</a></p>
+      <p class="mt-1 text-sm text-slate-700 dark:text-slate-300">Phone: <span class="font-medium">+91-7250215969</span></p>
+      <div class="mt-4 flex gap-2">
+        <a class="flex-1 inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 bg-indigo-600 text-white font-medium hover:bg-indigo-700" href="mailto:rishukumar.work@gmail.com">Get in touch</a>
+        <a class="inline-flex items-center gap-2 rounded-md px-3 py-2 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700" href="https://rishukumar.carrd.co" target="_blank" rel="noopener">Portfolio (Carrd)</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
