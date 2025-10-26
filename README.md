@@ -1,46 +1,47 @@
-# 🧑‍💻 Rishu Kumar — Portfolio
-
-A clean, modern, and fully responsive **developer portfolio** built using only **HTML**, **TailwindCSS**, and **HTMX** — no frameworks.  
-It showcases my projects, skills, and side work in **Python**, **FastAPI**, **TailwindCSS**, and **video editing**.
 
 ---
 
-## 🚀 Live Demo
-👉 **[rishukumark19.github.io](https://rishukumark19.github.io)**  
-(Hosted via GitHub Pages)
+## 🧰 Tech Stack
+
+| Tool | Purpose |
+|------|----------|
+| **HTML5** | Base structure |
+| **TailwindCSS** | Styling and responsive design |
+| **HTMX** | Lightweight interactivity (expandable cards) |
+| **GitHub Pages** | Hosting platform |
 
 ---
 
-## 📘 About This Project
+## 🧑‍🎓 About Me
 
-This portfolio is a simple static site that represents me as a **Python-focused full-stack learner** who’s exploring:
-- **Backend:** Python, Django, FastAPI  
-- **Frontend:** HTML, TailwindCSS, HTMX  
-- **Automation:** AI & prompt-driven workflows  
-- **Creative Side Work:** Video editing and gaming montages  
+**Rishu Kumar**  
+🎓 B.Tech — Electronics & Communication Engineering, NITK Surathkal (Batch 2025)  
+💻 Developer focused on Python, FastAPI, and web development with Tailwind & HTMX  
+🎥 Also edit gaming videos and creative montages as a side hobby  
 
-It uses:
-- 🧩 **TailwindCSS** for styling (CDN)
-- ⚡ **HTMX** for interactivity (no JS frameworks)
-- 🌙 **Dark/Light Mode toggle** with localStorage persistence
-- 📄 **Download Resume** button for recruiters
-- 💬 **Expandable project cards** powered by HTMX  
-- 💡 **Simple, self-contained file structure** — everything works from `index.html` alone
+📬 **Contact:**  
+- Email: [rishukumar.work@gmail.com](mailto:rishukumar.work@gmail.com)  
+- LinkedIn: [linkedin.com/in/rishukumar-work](https://www.linkedin.com/in/rishukumar-work)  
+- GitHub: [github.com/rishukumark19](https://github.com/rishukumark19)  
+- Twitter/X: [@rishukumark19](https://x.com/rishukumark19)  
+- Instagram (creative): [@cleanslatevibe](https://www.instagram.com/cleanslatevibe/)
 
 ---
 
-## 🧠 Features
+## 📸 Screenshots
 
-| Feature | Description |
-|----------|-------------|
-| 🎨 Responsive Design | Built with TailwindCSS — works beautifully on all screen sizes |
-| 🌗 Dark Mode | Auto-detects system theme + manual toggle |
-| ⚙️ HTMX Integration | Project cards expand without page reload |
-| 📄 Resume Download | Direct download button (PDF in root directory) |
-| 💼 Modular Sections | Profile, Skills, Experience, Projects, Education, and Side Work |
-| 🧠 Easy to Maintain | Just HTML, Tailwind, and HTMX — no build tools or JS frameworks |
+| Light Mode | Dark Mode |
+|-------------|------------|
+| ![Light Screenshot](https://via.placeholder.com/500x300.png?text=Light+Mode+Preview) | ![Dark Screenshot](https://via.placeholder.com/500x300.png?text=Dark+Mode+Preview) |
+
+*(replace with your own screenshots after deployment)*
 
 ---
 
-## 📂 File Structure
+## ⚡ Setup & Deployment
 
+### 🧩 Local Preview
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/rishukumark19/rishukumark19.github.io
+   cd rishukumark19.github.io
