@@ -1,160 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rishu Kumar — Developer Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rishu Kumar — Developer & Creator</title>
 
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          colors: { brand: '#6366f1' },
-          fontFamily: { inter: ['Inter', 'sans-serif'] },
+          colors: {
+            warm: {
+              50: '#fff8f0',
+              100: '#fff0e0',
+              300: '#f6c79a',
+              500: '#f59e0b'
+            },
+            glow: '#f472b6'
+          },
+          fontFamily: { inter: ['Inter', 'sans-serif'] }
         }
       }
-    };
-  </script>
-
-  <!-- Dark Mode Setup -->
-  <script>
-    if (localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches))
-      document.documentElement.classList.add('dark');
-    else document.documentElement.classList.remove('dark');
-
-    function toggleDark() {
-      document.documentElement.classList.toggle('dark');
-      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     }
   </script>
+
+  <meta name="description" content="Rishu Kumar — Python, FastAPI, HTMX, TailwindCSS. Developer & creative video editor. NITK graduate. Open to opportunities." />
 
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at top left, #fef9c3, #c7d2fe);
+    /* Base warm background (light) and rich gradient (dark) */
+    body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+    :root {
+      --glass: rgba(255,255,255,0.6);
+      --glass-dark: rgba(6,8,15,0.55);
     }
-    .dark body {
-      background: radial-gradient(circle at top left, #1e293b, #4f46e5);
+    body.light-mode {
+      background: linear-gradient(180deg,#fffaf3 0%, #fff8eb 45%, #fff3e0 100%);
+      color-scheme: light;
     }
-    .glass {
-      backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.2);
+    body.dark-mode {
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(99,102,241,0.12), transparent 8%),
+                  radial-gradient(1000px 500px at 90% 90%, rgba(139,92,246,0.08), transparent 6%),
+                  linear-gradient(180deg,#070617 0%, #0b1020 60%);
+      color-scheme: dark;
     }
-    .dark .glass {
-      background: rgba(15, 23, 42, 0.5);
+
+    /* Glass cards */
+    .card {
+      backdrop-filter: blur(6px) saturate(1.05);
+      -webkit-backdrop-filter: blur(6px);
     }
-    .tag {
-      transition: transform 0.3s;
+    body.light-mode .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.84));
+      border: 1px solid rgba(16,24,40,0.04);
     }
-    .tag:hover {
-      transform: scale(1.1);
+    body.dark-mode .card {
+      background: linear-gradient(180deg, rgba(10,12,20,0.6), rgba(8,10,20,0.45));
+      border: 1px solid rgba(255,255,255,0.04);
     }
+
+    /* Tilt effect */
+    .tilt {
+      transform-style: preserve-3d;
+      transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms;
+      will-change: transform;
+    }
+    .tilt:hover { box-shadow: 0 12px 40px rgba(2,6,23,0.18); }
+
+    /* skill tag hover */
+    .skill {
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .skill:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 30px rgba(2,6,23,0.08); }
+
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: all 600ms cubic-bezier(.2,.9,.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* warm accent for buttons in light, neon glow in dark */
+    .accent {
+      background: linear-gradient(90deg, #fb923c, #f59e0b);
+      color: white;
+      box-shadow: 0 6px 20px rgba(245,158,11,0.15);
+    }
+    body.dark-mode .accent {
+      background: linear-gradient(90deg,#7c3aed,#06b6d4);
+      box-shadow: 0 10px 40px rgba(99,102,241,0.12), 0 2px 8px rgba(6,182,212,0.06);
+    }
+
+    /* small helpers */
+    .muted { color: rgba(2,6,23,0.6); }
+    body.dark-mode .muted { color: rgba(255,255,255,0.65); }
+    .focus-ring:focus { outline: none; box-shadow: 0 0 0 4px rgba(99,102,241,0.12); border-radius: 12px; }
+
+    html { scroll-behavior: smooth; }
   </style>
 </head>
+<body class="light-mode">
 
-<body class="text-slate-800 dark:text-slate-100 transition-colors duration-500 min-h-screen relative overflow-x-hidden">
-
-  <!-- Floating Gradients -->
-  <div class="absolute inset-0 -z-10 overflow-hidden">
-    <div class="absolute -top-40 -left-40 w-80 h-80 bg-purple-300/30 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute top-1/2 right-0 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+  <!-- top-right dark toggle -->
+  <div class="fixed top-4 right-4 z-50">
+    <button id="themeBtn" aria-label="Toggle theme" class="p-3 rounded-full focus-ring bg-white shadow-lg border border-gray-100">
+      <!-- icons will be replaced by JS -->
+      <svg id="sun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v1a1 1 0 11-2 0V4a1 1 0 011-1zm0 10a3 3 0 100-6 3 3 0 000 6zm7-3a1 1 0 110 2h-1a1 1 0 110-2h1zM4 10a1 1 0 110 2H3a1 1 0 110-2h1zM15.657 4.343a1 1 0 011.414 1.414L16.071 6.757a1 1 0 11-1.414-1.414l1-1zM5.343 14.657a1 1 0 011.414 1.414l-1 1A1 1 0 114.343 15.07l1-1zM15.657 15.657a1 1 0 010 1.414l-1 1a1 1 0 11-1.414-1.414l1-1a1 1 0 011.414 0zM5.343 5.343a1 1 0 010 1.414l-1 1A1 1 0 112.929 6.757l1-1a1 1 0 011.414 0z" /></svg>
+      <svg id="moon" style="display:none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 116.707 2.707 7 7 0 1017.293 13.293z"/></svg>
+    </button>
   </div>
 
-  <!-- Dark Mode Button -->
-  <button onclick="toggleDark()" class="fixed top-4 right-4 p-3 rounded-full bg-white/80 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 shadow-lg hover:scale-105 transition">
-    <svg class="w-6 h-6 text-slate-800 dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646A9.003 9.003 0 0012 21A9.003 9.003 0 0020.354 15.354z"/></svg>
-    <svg class="hidden dark:block w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8-9h1M3 12H2m15.364 6.364l.707.707M6.343 6.343l.707.707M17.657 6.343l-.707.707M6.343 17.657l-.707.707M12 5a7 7 0 100 14a7 7 0 000-14z"/></svg>
-  </button>
+  <main class="max-w-6xl mx-auto px-6 py-12">
 
-  <main class="max-w-5xl mx-auto px-5 py-12 space-y-10">
-
-    <!-- Hero -->
-    <header class="glass border border-slate-200 dark:border-slate-700 rounded-3xl p-8 text-center shadow-lg">
-      <img src="rishu_kumar_img.jpg" class="w-32 h-32 mx-auto rounded-full ring-4 ring-indigo-200 dark:ring-indigo-800 shadow-xl object-cover" />
-      <h1 class="text-4xl font-extrabold mt-4 text-slate-900 dark:text-white">Rishu Kumar</h1>
-      <p class="text-slate-600 dark:text-slate-300 mt-2 max-w-2xl mx-auto leading-relaxed">
-        Frontend-focused developer exploring <strong>Python</strong>, <strong>FastAPI</strong>, <strong>TailwindCSS</strong>, and <strong>HTMX</strong>. I build clean interfaces and backend systems with automation in mind.
+    <!-- HERO -->
+    <header class="card rounded-3xl p-8 tilt text-center mb-8 reveal">
+      <img src="rishu_kumar_img.jpg" alt="Rishu Kumar" class="mx-auto w-36 h-36 rounded-full ring-4 ring-warm-100 dark:ring-0 object-cover shadow-xl" />
+      <h1 class="mt-4 text-4xl font-extrabold">Rishu Kumar</h1>
+      <p class="mt-3 text-lg muted max-w-2xl mx-auto">
+        Python developer and creator — deep diving into <strong>FastAPI</strong>, building interactive UIs with <strong>HTMX</strong>, and designing with <strong>TailwindCSS</strong>.
       </p>
-      <div class="flex flex-wrap justify-center gap-3 mt-5">
-        <a href="mailto:rishukumar.work@gmail.com" class="btn">Email</a>
-        <a href="https://www.linkedin.com/in/rishukumar-work" class="btn">LinkedIn</a>
-        <a href="https://github.com/rishukumark19" class="btn">GitHub</a>
-        <a href="Rishu_Kumar_Resume.pdf" download class="btn bg-indigo-600 text-white hover:bg-indigo-700">Download Resume</a>
+
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a href="#contact" class="px-4 py-2 rounded-lg accent font-semibold hover:scale-105 transition">Work with me</a>
+        <a href="Rishu_Kumar_Resume.pdf" download class="px-4 py-2 rounded-lg bg-white border border-gray-200 dark:bg-transparent dark:border-gray-700">Download Resume</a>
+        <a href="https://github.com/rishukumark19" target="_blank" class="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-400 to-pink-400 text-white">View Code</a>
+      </div>
+
+      <div class="mt-6 flex items-center justify-center gap-3 text-sm muted">
+        <span class="px-2 py-1 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-700">Currently learning: FastAPI · HTMX · TailwindCSS</span>
+        <span>•</span>
+        <a href="mailto:rishukumar.work@gmail.com" class="underline">rishukumar.work@gmail.com</a>
       </div>
     </header>
 
-    <!-- About -->
-    <section class="glass rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-md">
-      <h2 class="text-2xl font-semibold mb-3">About Me</h2>
-      <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
-        I love building things that make sense — from small Python scripts to scalable web apps.  
-        My journey began with Django and has grown into exploring APIs with FastAPI, dynamic UIs with HTMX, and designing clean experiences with TailwindCSS.  
-        My focus is always on clarity, performance, and making tech feel human.
-      </p>
-    </section>
+    <div class="grid lg:grid-cols-3 gap-6">
 
-    <!-- Skills -->
-    <section class="glass rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-md">
-      <h2 class="text-2xl font-semibold mb-4">Skills</h2>
-      <div class="flex flex-wrap gap-2 justify-center">
-        <span class="tag bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-3 py-1 rounded-full text-sm">Python</span>
-        <span class="tag bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm">FastAPI</span>
-        <span class="tag bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200 px-3 py-1 rounded-full text-sm">HTMX</span>
-        <span class="tag bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-3 py-1 rounded-full text-sm">TailwindCSS</span>
-        <span class="tag bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 px-3 py-1 rounded-full text-sm">Git & GitHub</span>
-        <span class="tag bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200 px-3 py-1 rounded-full text-sm">Video Editing</span>
+      <!-- LEFT column -->
+      <div class="lg:col-span-2 space-y-6">
+
+        <!-- About + Summary -->
+        <section class="card p-6 rounded-2xl tilt reveal">
+          <div class="flex items-start gap-4">
+            <div class="flex-1">
+              <h2 class="text-2xl font-semibold">Profile Summary</h2>
+              <p class="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+                Results-driven developer with experience across web development and creative editing. Strong foundations in Django and currently focusing on backend APIs with FastAPI and building rich, progressive frontends using HTMX and TailwindCSS. I enjoy building practical automation, integrating AI for workflows, and crafting intuitive user experiences.
+              </p>
+
+              <div class="mt-4 text-sm muted">
+                <strong>Tooling:</strong> Git, Google Cloud, venv, Prompt Engineering (AI-assisted workflows).
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="card p-6 rounded-2xl tilt reveal">
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-semibold">Highlighted Projects</h2>
+            <div class="text-sm muted">Click to expand • interactive</div>
+          </div>
+
+          <div class="mt-4 grid sm:grid-cols-2 gap-4" id="projectGrid">
+            <!-- project cards inserted by JS -->
+          </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="card p-6 rounded-2xl tilt reveal">
+          <h2 class="text-2xl font-semibold">Experience & Leadership</h2>
+          <ul class="mt-4 space-y-3 text-slate-700 dark:text-slate-300">
+            <li><strong>President — SAE NITK</strong> — Led multiple technical projects, workshops, and national events; improved industry collaborations and student participation.</li>
+            <li><strong>Publicity Head — NSS NITK</strong> — Designed and executed digital campaigns that boosted volunteer engagement by ~50%.</li>
+            <li><strong>Freelance Marketing & Developer</strong> — Built web solutions, social strategy, and automation for small businesses.</li>
+            <li><strong>Web Enthusiasts Club, NITK</strong> — Contributed to front-end and back-end projects for college initiatives.</li>
+          </ul>
+        </section>
+
+        <!-- Certifications + Achievements -->
+        <section class="card p-6 rounded-2xl tilt reveal">
+          <h2 class="text-2xl font-semibold">Certifications & Achievements</h2>
+          <ul class="mt-4 list-disc pl-5 text-slate-700 dark:text-slate-300 space-y-2">
+            <li>Responsive Web Design Certification — freeCodeCamp</li>
+            <li>JEE Mains Rank: 7800 (Top 0.6%)</li>
+            <li>Best Publicity Campaign Award — NSS NITK</li>
+            <li>Academic & extracurricular leadership at NITK</li>
+          </ul>
+        </section>
+
+      </div>
+
+      <!-- RIGHT column -->
+      <aside class="space-y-6">
+
+        <!-- Skills -->
+        <div class="card p-6 rounded-2xl tilt reveal">
+          <h3 class="text-xl font-semibold">Skills</h3>
+          <div class="mt-4 grid grid-cols-2 gap-2">
+            <div>
+              <div class="py-1 text-sm skill px-3 rounded-lg bg-amber-50 dark:bg-amber-900">Python (deep dive)</div>
+              <div class="mt-2 py-1 text-sm skill px-3 rounded-lg bg-indigo-50 dark:bg-indigo-900">FastAPI</div>
+              <div class="mt-2 py-1 text-sm skill px-3 rounded-lg bg-sky-50 dark:bg-sky-900">HTMX</div>
+            </div>
+            <div>
+              <div class="py-1 text-sm skill px-3 rounded-lg bg-teal-50 dark:bg-teal-900">TailwindCSS</div>
+              <div class="mt-2 py-1 text-sm skill px-3 rounded-lg bg-rose-50 dark:bg-rose-900">Django</div>
+              <div class="mt-2 py-1 text-sm skill px-3 rounded-lg bg-gray-50 dark:bg-gray-800">Git & GitHub</div>
+            </div>
+          </div>
+          <p class="mt-4 text-sm muted">Also: Video Editing (DaVinci Resolve, Premiere Pro, After Effects), Basic Cloud deployments (Google Cloud).</p>
+        </div>
+
+        <!-- Education -->
+        <div class="card p-6 rounded-2xl tilt reveal">
+          <h3 class="text-xl font-semibold">Education</h3>
+          <div class="mt-3 text-slate-700 dark:text-slate-300">
+            <strong>NITK Surathkal</strong> — B.Tech, Electronics & Communication Engineering (2021–2025)<br/>
+            <strong>GGCET St. Xavier’s, Dhanbad</strong> — Class XII: 95% · Class X: 86%
+          </div>
+        </div>
+
+        <!-- Side work -->
+        <div class="card p-6 rounded-2xl tilt reveal">
+          <h3 class="text-xl font-semibold">Side Work — Creative / Video Editing</h3>
+          <p class="mt-3 text-slate-700 dark:text-slate-300">
+            Short gaming edits (Valorant montages), meme edits, grading & motion graphics. Tools: DaVinci Resolve, Premiere Pro, After Effects. Available for small freelance projects.
+          </p>
+          <div class="mt-3 text-sm muted">
+            Socials:
+            <a href="https://x.com/rishukumark19" target="_blank" class="underline">x/@rishukumark19</a> ·
+            <a href="https://www.instagram.com/cleanslatevibe/" target="_blank" class="underline">instagram</a>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card p-8 rounded-3xl mt-8 tilt reveal">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-semibold">Let's build something</h2>
+          <p class="mt-2 muted">Open to internships, freelance work, and collaborations. I love backend + frontend combos and automation challenges.</p>
+        </div>
+        <div class="flex gap-3">
+          <a href="mailto:rishukumar.work@gmail.com" class="px-5 py-3 accent rounded-lg font-semibold">Email Me</a>
+          <a href="Rishu_Kumar_Resume.pdf" download class="px-5 py-3 bg-white rounded-lg border border-gray-200">Resume</a>
+        </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section class="glass rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-md">
-      <h2 class="text-2xl font-semibold mb-4">Projects</h2>
-      <div id="projects" class="grid sm:grid-cols-2 gap-4"></div>
-    </section>
-
-    <!-- Contact -->
-    <section class="glass rounded-3xl p-6 border border-slate-200 dark:border-slate-700 text-center shadow-md">
-      <h2 class="text-2xl font-semibold mb-3">Let’s Connect</h2>
-      <p class="text-slate-600 dark:text-slate-300 mb-5">Open to collaborations, freelance work, and tech discussions!</p>
-      <a href="mailto:rishukumar.work@gmail.com" class="btn bg-indigo-600 text-white hover:bg-indigo-700">Email Me</a>
-    </section>
-
-    <footer class="text-center text-sm text-slate-600 dark:text-slate-400 mt-10">
-      © <span id="year"></span> Rishu Kumar — Built with TailwindCSS
+    <footer class="text-center mt-10 muted">
+      © <span id="year"></span> Rishu Kumar — Built with TailwindCSS • Crafted with curiosity
     </footer>
   </main>
 
-  <style>
-    .btn {
-      @apply inline-flex items-center justify-center px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-800/70 text-sm font-medium hover:scale-105 transition shadow;
-    }
-  </style>
-
+  <!-- SCRIPTS: theme toggle, tilt, projects, scroll reveal -->
   <script>
-    const projects = [
-      { title: "Portfolio Website", stack: "TailwindCSS + HTMX", desc: "My own personal site — responsive, minimal, and fast. Built using TailwindCSS and vanilla JS." },
-      { title: "FastAPI Backend", stack: "Python + FastAPI", desc: "Built small REST APIs and async apps for automation and data handling." },
-      { title: "Python Automation", stack: "Python + AI APIs", desc: "Scripts for automation, AI prompt tools, and data manipulation." },
-      { title: "Video Edits (Side)", stack: "DaVinci Resolve", desc: "Edited Valorant montages and memes, using transitions and grading." }
-    ];
+    // ========== THEME ==========
+    const body = document.body;
+    const themeBtn = document.getElementById('themeBtn');
+    const sun = document.getElementById('sun');
+    const moon = document.getElementById('moon');
 
-    const container = document.getElementById("projects");
-    projects.forEach((p, i) => {
-      const card = document.createElement("div");
-      card.className = "border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/70 backdrop-blur-md rounded-2xl p-4 transition hover:shadow-lg hover:-translate-y-1";
-      card.innerHTML = `
-        <h3 class="font-semibold text-slate-900 dark:text-slate-100">${p.title}</h3>
-        <p class="text-sm text-indigo-500 mt-1">${p.stack}</p>
-        <p class="text-sm text-slate-700 dark:text-slate-300 mt-2">${p.desc}</p>
-      `;
-      container.appendChild(card);
+    function applyTheme(t) {
+      if (t === 'dark') {
+        body.classList.remove('light-mode'); body.classList.add('dark-mode');
+        sun.style.display = 'none'; moon.style.display = 'inline';
+        localStorage.theme = 'dark';
+      } else {
+        body.classList.remove('dark-mode'); body.classList.add('light-mode');
+        moon.style.display = 'none'; sun.style.display = 'inline';
+        localStorage.theme = 'light';
+      }
+    }
+
+    // init theme
+    const stored = localStorage.getItem('theme');
+    if (stored === 'dark') applyTheme('dark'); else applyTheme('light');
+
+    themeBtn.addEventListener('click', () => {
+      applyTheme(body.classList.contains('dark-mode') ? 'light' : 'dark');
     });
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // ========== PROJECTS (with expand toggle + tilt preview) ==========
+    const projects = [
+      {
+        title: "Personal Portfolio",
+        stack: "TailwindCSS · HTMX · GitHub Pages",
+        desc: "A fast, accessible portfolio. Built with Tailwind utilities, HTMX progressive enhancement in mind, and easy to maintain component styles."
+      },
+      {
+        title: "FastAPI Backend",
+        stack: "Python · FastAPI · Pydantic",
+        desc: "Async APIs for automation and data services. Focused on clean validation, modular routers and lightweight deployment on Google Cloud."
+      },
+      {
+        title: "Python Automation Tools",
+        stack: "Python · OpenAI APIs",
+        desc: "Automation scripts and prompt-driven utilities for repetitive tasks and small ETL jobs — built for reliability and clarity."
+      },
+      {
+        title: "Creative Video Edits",
+        stack: "DaVinci Resolve · Premiere Pro",
+        desc: "Valorant montages, meme edits, color grading and motion graphics — short-form work for social engagement."
+      }
+    ];
+
+    const projectGrid = document.getElementById('projectGrid');
+
+    function createProjectCard(p, idx) {
+      const card = document.createElement('div');
+      card.className = 'p-4 rounded-2xl tilt card cursor-pointer transform hover:-translate-y-1 transition';
+      card.innerHTML = `
+        <div class="flex items-start gap-3">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-br from-purple-400 to-pink-400 text-white font-bold">${p.title.split(' ').map(s=>s[0]).slice(0,2).join('')}</div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="font-semibold text-lg">${p.title}</h3>
+              <button class="text-sm px-3 py-1 rounded-md bg-white/60 dark:bg-transparent border border-gray-200 dark:border-gray-700" data-idx="${idx}">Open</button>
+            </div>
+            <p class="text-sm muted mt-2">${p.stack}</p>
+            <div class="mt-3 text-sm text-slate-700 dark:text-slate-300 desc" style="max-height:0;overflow:hidden;transition:max-height .35s ease">${p.desc}</div>
+          </div>
+        </div>
+      `;
+      // toggle open
+      card.querySelector('button').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const desc = card.querySelector('.desc');
+        if (desc.style.maxHeight && desc.style.maxHeight !== '0px') {
+          desc.style.maxHeight = '0';
+        } else {
+          // collapse others
+          document.querySelectorAll('#projectGrid .desc').forEach(d => d.style.maxHeight = '0');
+          desc.style.maxHeight = desc.scrollHeight + 'px';
+        }
+      });
+
+      // toggle on clicking card area
+      card.addEventListener('click', () => {
+        card.querySelector('button').click();
+      });
+
+      // small tilt effect: mouse move
+      card.addEventListener('mousemove', (ev) => {
+        const rect = card.getBoundingClientRect();
+        const px = (ev.clientX - rect.left) / rect.width;
+        const py = (ev.clientY - rect.top) / rect.height;
+        const rx = (py - 0.5) * 8;
+        const ry = (px - 0.5) * -10;
+        card.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+
+      return card;
+    }
+
+    projects.forEach((p, i) => projectGrid.appendChild(createProjectCard(p, i)));
+
+    // ========== SCROLL REVEAL ==========
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ========== small accessibility helpers ==========
+    document.getElementById('year').textContent = new Date().getFullYear?.() || (new Date()).getFullYear();
+
+    // expose theme for dev console if needed
+    window.__applyTheme = applyTheme;
   </script>
 </body>
 </html>
