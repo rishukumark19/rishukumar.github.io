@@ -1,88 +1,81 @@
-<style>
-    /* Keyframe for the slow, breathing glow */
-    @keyframes subtle-glow {
-        0% { background-position: 10% 10%, 90% 90%, center; }
-        50% { background-position: 12% 8%, 88% 92%, center; }
-        100% { background-position: 10% 10%, 90% 90%, center; }
-    }
 
-    body {
-        font-family: Inter, system-ui, sans-serif;
-        transition: background 0.6s ease, color 0.4s ease;
-    }
+-----
 
-    /* ---- LIGHT MODE ---- */
-    body {
-        background: linear-gradient(180deg, #fffaf3 0%, #fff5e1 100%);
-        color-scheme: light;
-    }
+# 🚀 Rishu Kumar — Developer Portfolio
 
-    /* ---- DARK MODE (with Animation) ---- */
-    .dark body {
-        /* Enhanced background definitions for the animation */
-        background: radial-gradient(800px at 10% 10%, rgba(99,102,241,0.2), transparent 40%),
-                    radial-gradient(900px at 90% 90%, rgba(139,92,246,0.18), transparent 50%),
-                    linear-gradient(180deg,#0a0f1d 0%, #111827 80%);
-        color-scheme: dark;
-        /* Apply the animation */
-        animation: subtle-glow 20s ease-in-out infinite alternate;
-        background-size: 100% 100%, 100% 100%, 100% 100%; /* Ensures backgrounds are sized correctly for position changes */
-    }
+A fast, interactive, and fully responsive personal portfolio showcasing my journey into **Python Backend Development** (FastAPI) and building **modern, lightweight UIs** with **HTMX** and **Tailwind CSS**.
 
-    /* Glass cards */
-    .card {
-        backdrop-filter: blur(8px) saturate(1.05);
-        -webkit-backdrop-filter: blur(8px);
-        transition: background 0.4s ease, border 0.4s ease, box-shadow 220ms;
-    }
+This project embodies the **"less JavaScript, more HTML"** philosophy.
 
-    /* Light Mode Card (Default) */
-    body .card {
-        background: rgba(255,255,255,0.8);
-        border: 1px solid rgba(16,24,40,0.05);
-    }
+-----
 
-    /* Dark Mode Card */
-    .dark body .card {
-        background: rgba(17,24,39,0.55);
-        border: 1px solid rgba(255,255,255,0.05);
-    }
+## ✨ Live Demo & Experience
 
-    /* Tilt effect */
-    .tilt {
-        transform-style: preserve-3d;
-        transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms;
-        will-change: transform;
-    }
-    .tilt:hover { box-shadow: 0 12px 40px rgba(2,6,23,0.18), 0 0 0 1px rgba(2,6,23,0.05); }
-    .dark .tilt:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.08); }
+The best way to see the magic is to check it out live\!
 
+👉 **[rishukumark19.github.io](https://rishukumark19.github.io)**
+*Hosted via GitHub Pages*
 
-    /* skill tag hover */
-    .skill {
-        transition: transform .22s ease, box-shadow .22s ease;
-    }
-    .skill:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 30px rgba(2,6,23,0.08); }
+| Feature Spotlight | Description |
+| :--- | :--- |
+| **Glass Morphism** | Subtle, frosted card effects that change seamlessly between light and dark modes. |
+| **Interactivity** | **HTMX** powers the expandable project cards, providing a modern, rich user experience without heavy JS dependencies. |
+| **Tilt Effect** | Micro-interactions on key cards (hover over the main card\!) to add a polished feel. |
+| **Breathing Glow** | The **dark mode** background features a subtle, slow animation for a dynamic, deep-space feel. |
 
-    /* reveal */
-    .reveal { opacity: 0; transform: translateY(18px); transition: all 600ms cubic-bezier(.2,.9,.3,1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+-----
 
-    /* warm accent for buttons in light, neon glow in dark */
-    .accent {
-        background: linear-gradient(90deg, #fb923c, #f59e0b);
-        color: white;
-        box-shadow: 0 6px 20px rgba(245,158,11,0.15);
-    }
-    .dark .accent {
-        background: linear-gradient(90deg,#7c3aed,#06b6d4);
-        box-shadow: 0 10px 40px rgba(99,102,241,0.12), 0 2px 8px rgba(6,182,212,0.06);
-    }
+## 🛠️ Stack & Philosophy
 
-    /* small helpers */
-    .muted { color: rgba(2,6,23,0.6); }
-    .dark .muted { color: rgba(255,255,255,0.65); }
-    .focus-ring:focus { outline: none; box-shadow: 0 0 0 4px rgba(99,102,241,0.12); border-radius: 12px; }
+This portfolio is a single, self-contained file (`index.html`) demonstrating proficiency with a modern, *utility-first* approach to web development.
 
-    html { scroll-behavior: smooth; }
-</style>
+| Category | Technology | Focus |
+| :--- | :--- | :--- |
+| **Structure** | **HTML5** | Maximum semantic clarity and accessibility. |
+| **Style** | **Tailwind CSS (CDN)** | Rapid utility-first design and native dark mode support. |
+| **Interactivity** | **HTMX** | Progressive enhancement: using HTML attributes to handle complex UI actions. |
+| **Theme** | **Pure JavaScript** | Clean logic for system preference detection and `localStorage` theme persistence. |
+
+### Core Learning Areas Showcased:
+
+  * **Python Backend Ecosystem:** FastAPI, Django, Pydantic.
+  * **Modern Frontend:** Mastering Tailwind CSS for production-ready design.
+  * **Workflow:** Automation, AI/Prompt Engineering, Git/GitHub.
+  * **Creative:** Video editing and motion graphics (DaVinci Resolve).
+
+-----
+
+## 💻 Getting Started
+
+To run this portfolio locally:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/rishukumark19/rishukumark19.github.io.git
+    cd rishukumark19.github.io
+    ```
+2.  **Open the file:**
+    Just open **`index.html`** directly in your web browser. Since it uses only CDNs for Tailwind and HTMX, **no build step is required**.
+
+### Customizing for Yourself:
+
+  * **Your Photo:** Replace `rishu_kumar_img.jpg` with your own photo.
+  * **Your Resume:** Replace `Rishu_Kumar_Resume.pdf` with your updated PDF.
+  * **Content:** Edit the text, projects array, and skills list directly within `index.html`.
+
+-----
+
+## 📂 File Structure
+
+| File | Description |
+| :--- | :--- |
+| **`index.html`** | The **complete portfolio**—all HTML, CSS styles, and JavaScript logic in one file. |
+| `rishu_kumar_img.jpg` | Your profile image. |
+| `Rishu_Kumar_Resume.pdf` | Your downloadable resume. |
+| **`README.md`** | You are here\! |
+
+-----
+
+**Made with ☕ and curiosity by Rishu Kumar.**
+
+-----
