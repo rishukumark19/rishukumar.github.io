@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Rishu Kumar — Video Editor</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { light: '#6366f1', dark: '#8b5cf6' }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background .6s ease, color .3s ease;
+            overflow-x: hidden;
+        }
+
+        /* === Backgrounds === */
+        body:not(.dark) {
+            background: radial-gradient(circle at 30% 20%, #eef2ff, #ffffff 80%);
+            color: #111827;
+        }
+
+        .dark body {
+            background: radial-gradient(circle at 70% 40%, #0b1120, #1e1b4b);
+            color: #e5e7eb;
+        }
+
+        /* === Card === */
+        .card {
+            backdrop-filter: blur(10px) saturate(1.1);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 1.75rem;
+            transition: all 0.4s ease;
+        }
+
+        body:not(.dark) .card {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .dark .card {
+            background: rgba(17, 24, 39, 0.7);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* === Accent Buttons === */
+        .accent-btn {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: .7rem 1.3rem;
+            border-radius: .6rem;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .accent-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        /* === Pills === */
+        .pill {
+            padding: .4rem 1rem;
+            border-radius: 999px;
+            background: rgba(99, 102, 241, 0.12);
+            font-weight: 600;
+            color: #4f46e5;
+            font-size: .9rem;
+            transition: all .3s;
+        }
+
+        .dark .pill {
+            background: rgba(255, 255, 255, 0.1);
+            color: #c7d2fe;
+        }
+
+        .pill:hover {
+            transform: translateY(-2px);
+        }
+
+        /* === Hero === */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            padding: 3rem 1rem;
+        }
+
+        @media(min-width:768px) {
+            .hero {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        /* === Video Card === */
+        iframe {
+            border-radius: 1rem;
+            width: 100%;
+            aspect-ratio: 16/9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transition: all .3s ease;
+        }
+
+        iframe:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+        }
+
+        /* === Cursor follower === */
+        #cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.3);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: multiply;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+        }
+
+        .dark #cursor {
+            background: rgba(147, 197, 253, 0.35);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 3rem;
+        }
+
+        /* Smooth Fade-In */
+        [data-sr] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        [data-sr].sr-show {
+            opacity: 1;
+            transform: none;
+        }
+    </style>
+</head>
+
+<body class="font-inter">
+    <div id="cursor"></div>
+
+    <div class="max-w-6xl mx-auto px-6 py-12">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-12">
+            <a href="../"
+                class="text-lg font-semibold text-indigo-600 dark:text-indigo-300 hover:opacity-80 transition">←
+                Home</a>
+            <div class="flex items-center gap-3">
+                <a href="mailto:rishukumar.work@gmail.com" class="pill">Email</a>
+                <a href="../Rishu_Kumar_Resume.pdf" download class="pill">Resume</a>
+
+                <!-- Theme Toggle -->
+                <button id="themeBtn"
+                    class="p-3 rounded-full bg-white/70 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-md transition">
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-500 dark:hidden transition-transform" fill="currentColor"
+                        viewBox="0 0 20 20">
+                        <path
+                            d="M10 3a1 1 0 011 1v1a1 1 0 11-2 0V4a1 1 0 011-1zm0 10a3 3 0 100-6 3 3 0 000 6zm7-3a1 1 0 110 2h-1a1 1 0 110-2h1zM4 10a1 1 0 110 2H3a1 1 0 110-2h1zM15.657 4.343a1 1 0 011.414 1.414L16.071 6.757a1 1 0 11-1.414-1.414l1-1zM5.343 14.657a1 1 0 011.414 1.414l-1 1A1 1 0 114.343 15.07l1-1z" />
+                    </svg>
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-indigo-400 hidden dark:inline transition-transform" fill="currentColor"
+                        viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 116.707 2.707 7 7 0 1017.293 13.293z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Hero -->
+        <section class="hero" data-sr>
+            <div class="flex-1">
+                <h1 class="text-5xl font-bold mb-3">Rishu Kumar</h1>
+                <p class="text-lg mb-4 text-indigo-600 dark:text-indigo-300">🎬 Visual Storyteller | Learning Motion
+                    Design in
+                    Public</p>
+                <p class="text-gray-700 dark:text-gray-300 max-w-xl leading-relaxed mb-6">
+                    I’m a visual creator and motion design explorer, driven by visuals that speak louder than words.
+                    I’m currently experimenting with <strong>After Effects</strong> and sharing every step of the
+                    journey.
+                    This is my creative playground — where visuals meet rhythm, and edits tell stories.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="mailto:rishukumar.work@gmail.com" class="accent-btn">Hire / Contact</a>
+                    <a href="https://www.instagram.com/cleanslatevibe/" target="_blank" class="pill">Instagram</a>
+                    <a href="https://x.com/cleanslatevibe" target="_blank" class="pill">X</a>
+                    <a href="https://www.linkedin.com/in/cleanslatevibe" target="_blank" class="pill">LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="mt-8 md:mt-0 md:w-1/3 flex justify-center">
+                <img src="../resource/rishu_kumar_img.jpg" alt="Rishu Kumar"
+                    class="w-52 h-52 rounded-full object-cover shadow-xl ring-4 ring-indigo-200 dark:ring-indigo-600">
+            </div>
+        </section>
+
+        <!-- Services + Tools -->
+        <section class="grid md:grid-cols-2 gap-8 mb-12" data-sr>
+            <div class="card">
+                <h3 class="text-2xl font-semibold mb-4">Services</h3>
+                <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Short-form gaming edits & montages (Valorant-focused)</li>
+                    <li>Color grading & cinematic looks</li>
+                    <li>Smooth transitions & speed-ramping</li>
+                    <li>3D text & VFX overlays (After Effects)</li>
+                    <li>Meme edits, promotional clips & showreels</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 class="text-2xl font-semibold mb-4">Tools & Skills</h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="pill">DaVinci Resolve</span>
+                    <span class="pill">Premiere Pro</span>
+                    <span class="pill">After Effects</span>
+                    <span class="pill">Color Grading</span>
+                    <span class="pill">Motion Graphics</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Videos -->
+        <section class="mb-12" data-sr>
+            <h3 class="text-3xl font-bold mb-6">Featured Edits</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="card">
+                    <h4 class="text-lg font-semibold mb-3 text-indigo-600 dark:text-indigo-300">2D Image Animation</h4>
+                    <iframe
+                        src="https://www.youtube.com/embed/h2QrrPgy7fQ?mute=1&loop=1&playlist=h2QrrPgy7fQ&autoplay=1"
+                        title="Valorant Montage" allowfullscreen></iframe>
+                    <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm leading-relaxed">Exploring Iman Gadzhi’s
+                        viral editing
+                        style — animated 2D images, low-fps effects, and textured animations.</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="pill">After Effects</span>
+                        <span class="pill">Cinematic Look</span>
+                        <span class="pill">Text Animation</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4 class="text-lg font-semibold mb-3 text-indigo-600 dark:text-indigo-300">Arrow Animation</h4>
+                    <iframe src="https://www.youtube.com/embed/Uhx_oTAr2lM?mute=1&loop=1&playlist=Uhx_oTAr2lM"
+                        title="Valorant Montage" allowfullscreen></iframe>
+                    <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm leading-relaxed">Motion design showreel
+                        using
+                        auto-tracked camera paths & expression-driven cinematic results.</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="pill">Motion Design</span>
+                        <span class="pill">Camera Path</span>
+                        <span class="pill">After Effects</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4 class="text-lg font-semibold mb-3 text-indigo-600 dark:text-indigo-300">Dancing/Moving Elements
+                    </h4>
+                    <iframe
+                        src="https://www.youtube.com/embed/uUdL_X6FVdk?mute=1&loop=1&playlist=uUdL_X6FVdk&autoplay=1"
+                        title="Valorant Montage" allowfullscreen></iframe>
+                    <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm leading-relaxed">Editing techniques for
+                        branding —
+                        logo animations, seamless transitions, and typography crafted in After Effects.</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="pill">Brand Edit</span>
+                        <span class="pill">Typography</span>
+                        <span class="pill">VFX Overlay</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="card text-center" data-sr>
+            <h3 class="text-3xl font-semibold mb-2">Let’s build something amazing</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">Open to freelance projects, collaborations, and
+                internships. <br>Drop me a line or find me on socials.</p>
+            <div class="flex justify-center items-center gap-4">
+                <a href="mailto:rishukumar.work@gmail.com" class="accent-btn">Email Me</a>
+                <span class="text-gray-400 dark:text-gray-500">or</span>
+                <a href="https://www.instagram.com/cleanslatevibe/" target="_blank"
+                    class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    title="Instagram">
+                    <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-2.163C8.74 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.74 0 12s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="https://x.com/cleanslatevibe" target="_blank"
+                    class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" title="X">
+                    <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <footer>© <span id="year"></span> Rishu Kumar — Video Editing Portfolio</footer>
+    </div>
+
+    <script>
+        // Cursor follower
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        });
+
+        // Theme toggle
+        const html = document.documentElement;
+        const themeBtn = document.getElementById('themeBtn');
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // ScrollReveal mimic
+        const elements = document.querySelectorAll('[data-sr]');
+        const reveal = () => {
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.9) el.classList.add('sr-show');
+            });
+        };
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
